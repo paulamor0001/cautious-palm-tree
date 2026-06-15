@@ -1,7 +1,7 @@
 // js/views/dig.js
 import {
   pickFactKey, parseFactKey, generateDistractors, updateFactAfterAnswer,
-  zoneAccuracy, hasUnlockedNextZone,
+  hasUnlockedNextZone,
 } from '../facts.js';
 import { sfx } from '../audio.js';
 import {
@@ -15,8 +15,11 @@ export function mount(container, ctx) {
   if (!ctx.state.zones[String(zone)].unlocked) zone = firstUnlockedZone(ctx.state);
 
   let questionsThisBone = 0;
-  let currentFact = null;       // { a, b, answer, key, correctIndex, options: number[] }
+  let currentFact = null;
   let wrongCountThisQ = 0;
+  let inputLocked = false;
+  let mounted = true;
+  const timeouts = new Set();
 
   container.innerHTML = '';
   const view = document.createElement('section');
@@ -37,6 +40,15 @@ export function mount(container, ctx) {
   const tilesEl = view.querySelector('[data-role="tiles"]');
   const revealEl = view.querySelector('[data-role="reveal"]');
 
+  function schedule(fn, ms) {
+    const id = setTimeout(() => {
+      timeouts.delete(id);
+      if (mounted) fn();
+    }, ms);
+    timeouts.add(id);
+    return id;
+  }
+
   nextQuestion();
 
   function firstUnlockedZone(state) {
@@ -53,6 +65,7 @@ export function mount(container, ctx) {
     options.splice(correctIndex, 0, answer);
     currentFact = { a, b, answer, key, correctIndex, options };
     wrongCountThisQ = 0;
+    inputLocked = false;
     renderQuestion();
   }
 
@@ -70,17 +83,19 @@ export function mount(container, ctx) {
   }
 
   function handleTap(idx, btn) {
+    if (inputLocked) return;
     if (idx === currentFact.correctIndex) onRight(btn);
     else onWrong(btn);
   }
 
   function onRight(btn) {
+    inputLocked = true;
     sfx.correct();
     btn.classList.add('correct');
     const outcome = wrongCountThisQ > 0 ? 'shown' : 'right';
     persistAnswer(currentFact.key, outcome);
     advanceBoneProgress();
-    setTimeout(maybeRevealOrAdvance, 600);
+    schedule(maybeRevealOrAdvance, 600);
   }
 
   function onWrong(btn) {
@@ -88,6 +103,7 @@ export function mount(container, ctx) {
     btn.classList.add('greyed');
     wrongCountThisQ++;
     if (wrongCountThisQ >= 2) {
+      inputLocked = true;
       persistAnswer(currentFact.key, 'shown');
       showAnswerThenAdvance();
     }
@@ -96,7 +112,6 @@ export function mount(container, ctx) {
   function persistAnswer(key, outcome) {
     const zoneFacts = ctx.state.zones[String(zone)].facts;
     zoneFacts[key] = updateFactAfterAnswer(zoneFacts[key], outcome);
-    // Unlock next zone if criteria met.
     if (hasUnlockedNextZone(zoneFacts)) {
       const nextZone = zone + 1;
       if (ctx.state.zones[String(nextZone)] && !ctx.state.zones[String(nextZone)].unlocked) {
@@ -120,10 +135,10 @@ export function mount(container, ctx) {
   function showAnswerThenAdvance() {
     revealEl.textContent = `${currentFact.a} × ${currentFact.b} = ${currentFact.answer} — got it. Next one's coming…`;
     revealEl.classList.add('show');
-    setTimeout(() => {
+    schedule(() => {
       revealEl.classList.remove('show');
       advanceBoneProgress();
-      setTimeout(maybeRevealOrAdvance, 200);
+      schedule(maybeRevealOrAdvance, 200);
     }, 1600);
   }
 
@@ -154,13 +169,19 @@ export function mount(container, ctx) {
     ctx.save();
     revealEl.classList.add('show');
 
-    setTimeout(() => {
+    schedule(() => {
       revealEl.classList.remove('show');
       questionsThisBone = 0;
       fillEl.style.height = '0%';
       nextQuestion();
     }, 1800);
   }
+
+  return function unmount() {
+    mounted = false;
+    for (const id of timeouts) clearTimeout(id);
+    timeouts.clear();
+  };
 }
 
 function cryptoRandomId() {

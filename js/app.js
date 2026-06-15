@@ -20,14 +20,19 @@ const ctx = {
 setMuted(ctx.state.muted);
 ctx.save(); // persist any tick that happened on load
 
+let currentUnmount = null;
+
 function switchTo(tab) {
   if (!views[tab]) return;
+  if (typeof currentUnmount === 'function') currentUnmount();
+  currentUnmount = null;
   for (const btn of tabbarEl.querySelectorAll('button')) {
     if (btn.dataset.tab === tab) btn.setAttribute('aria-current', 'page');
     else btn.removeAttribute('aria-current');
   }
   appEl.innerHTML = '';
-  views[tab].mount(appEl, ctx);
+  const result = views[tab].mount(appEl, ctx);
+  if (typeof result === 'function') currentUnmount = result;
 }
 
 tabbarEl.addEventListener('click', (e) => {
