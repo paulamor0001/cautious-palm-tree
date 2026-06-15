@@ -1,5 +1,5 @@
 // js/views/museum.js
-import { BONES_PER_SPECIES, ALL_SPECIES, SPECIES_BY_ZONE } from '../constants.js';
+import { BONES_PER_SPECIES, ALL_SPECIES } from '../constants.js';
 
 let speciesData = null;
 
