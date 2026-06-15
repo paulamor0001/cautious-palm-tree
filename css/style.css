@@ -207,3 +207,51 @@ html, body {
   border: 0; border-radius: 12px; font-size: 16px;
   cursor: pointer;
 }
+
+.sanctuary {
+  background: linear-gradient(160deg, #cde4a8 0%, #8aae5a 60%, #4d7a2a 100%);
+  border-radius: 24px; padding: 20px; min-height: 460px;
+  color: #1f3010;
+}
+
+.sanctuary .section-title {
+  font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
+  margin: 16px 0 8px; opacity: 0.7;
+}
+
+.egg-row {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.egg {
+  width: 56px; height: 70px;
+  background: #fff; border-radius: 50% 50% 45% 45%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-size: 11px; color: #5a8c3d; font-weight: 700;
+}
+.egg .ticks { font-size: 22px; font-weight: 700; color: #2d5a1f; line-height: 1; }
+.egg .ticks-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; }
+
+.dino-row {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+.dino {
+  background: rgba(255,255,255,0.85); border-radius: 12px; padding: 10px;
+  text-align: center;
+}
+.dino .icon { font-size: 32px; line-height: 1; }
+.dino .name { font-weight: 700; margin-top: 4px; }
+.dino .stage { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+.empty-state {
+  background: rgba(255,255,255,0.55);
+  border-radius: 12px; padding: 16px;
+  font-size: 14px; line-height: 1.5;
+}
+
+.hatch-modal input {
+  width: 100%; min-height: 48px; font-size: 18px;
+  border: 1px solid #ddd; border-radius: 12px; padding: 0 14px;
+  margin: 8px 0 16px;
+}
