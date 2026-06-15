@@ -3,72 +3,84 @@
     "displayName": "Compsognathus",
     "zone": 1,
     "fact": "Compsognathus was about the size of a chicken — one of the smallest dinosaurs ever found. It chased lizards and insects on its long, thin legs.",
-    "tint": "#a78b5f"
+    "tint": "#a78b5f",
+    "silhouette": "M2 50 Q14 49 24 46 Q34 43 42 39 Q48 37 52 36 Q56 30 58 24 Q60 18 64 16 Q67 14 70 14 Q72 12 73 11 Q76 11 76 14 Q75 16 73 17 Q70 18 68 20 Q67 23 68 25 Q69 26 71 25 Q71 28 68 29 Q64 30 60 30 Q58 36 56 40 Q60 44 62 50 Q60 54 58 50 Q56 46 54 44 Q54 50 53 54 Q51 55 51 50 Q51 46 50 44 Q46 45 42 46 Q44 50 44 54 Q42 55 42 51 Q42 47 40 46 Q34 47 28 49 Q18 51 8 52 Q4 52 2 50 Z"
   },
   "velociraptor": {
     "displayName": "Velociraptor",
     "zone": 2,
     "fact": "Velociraptors were about the size of a turkey and covered in feathers. The big claw on each foot was for pinning down prey, not slashing.",
-    "tint": "#7a3e2e"
+    "tint": "#7a3e2e",
+    "silhouette": "M2 36 Q8 32 14 28 Q22 24 30 22 Q36 22 40 22 Q42 18 44 14 Q48 10 54 8 Q60 6 66 8 Q70 9 73 11 Q76 12 78 13 Q79 15 76 16 Q72 16 68 15 Q65 17 64 19 Q67 19 69 20 Q68 22 64 22 Q60 22 56 21 Q56 26 56 30 Q57 36 56 41 Q60 46 62 50 Q60 54 57 51 Q54 47 52 44 Q51 49 50 54 Q48 55 48 50 Q49 47 49 44 Q47 43 45 41 Q41 44 36 46 Q34 47 34 50 Q32 51 32 47 Q33 44 35 42 Q30 41 25 40 Q23 47 20 50 Q17 51 18 47 Q20 44 22 41 Q14 42 7 43 Q3 43 2 41 Q1 38 2 36 Z M44 42 Q47 38 49 36 Q51 38 49 41 Q47 44 45 44 Q43 44 44 42 Z"
   },
   "pterodactyl": {
     "displayName": "Pterodactyl",
     "zone": 3,
     "fact": "Pterodactyls were flying reptiles, not dinosaurs. They had wings made of skin stretched from one very long finger to their body.",
-    "tint": "#5f7d9c"
+    "tint": "#5f7d9c",
+    "silhouette": "M50 28 Q44 26 38 22 Q30 18 22 14 Q14 10 8 8 Q4 8 6 12 Q12 16 18 20 Q24 24 28 28 Q22 28 16 30 Q10 32 6 36 Q4 38 8 38 Q14 36 22 34 Q30 32 38 32 Q42 32 46 32 Q48 36 52 38 Q56 36 60 32 Q66 30 72 28 Q76 26 80 22 Q86 20 92 22 Q96 24 98 22 Q98 18 92 16 Q86 14 80 14 Q74 16 68 20 Q62 22 56 24 Q56 22 58 20 Q60 18 62 16 Q64 14 65 13 Q68 13 68 15 Q66 17 65 18 Q64 20 63 22 Q60 24 56 26 Q53 27 50 28 Z"
   },
   "iguanodon": {
     "displayName": "Iguanodon",
     "zone": 4,
     "fact": "Iguanodon had a spike on each thumb that scientists first thought went on its nose. It chewed plants with cheeks full of grinding teeth.",
-    "tint": "#6b8a3e"
+    "tint": "#6b8a3e",
+    "silhouette": "M2 50 Q10 46 18 42 Q24 38 30 34 Q36 30 40 26 Q42 22 44 18 Q46 14 50 11 Q55 9 60 9 Q66 10 70 12 Q74 14 76 17 Q76 19 74 20 Q72 21 70 20 Q68 20 66 21 Q68 23 70 23 Q67 26 63 24 Q60 23 57 22 Q56 26 56 30 Q58 35 60 40 Q62 45 64 50 Q63 54 60 52 Q57 48 55 44 Q54 48 53 53 Q51 55 51 50 Q51 46 50 42 Q47 41 44 39 Q45 33 46 28 Q42 32 38 35 Q41 39 42 43 Q44 47 43 50 Q44 53 42 53 Q39 52 36 51 Q34 47 36 43 Q39 39 42 36 Q34 39 26 42 Q18 45 11 48 Q5 50 2 50 Z M40 26 L43 22 L44 26 Z"
   },
   "stegosaurus": {
     "displayName": "Stegosaurus",
     "zone": 5,
     "fact": "Stegosaurus had two rows of bony plates down its back that may have helped it warm up in the sun. Its brain was about the size of a walnut.",
-    "tint": "#4a6b3a"
+    "tint": "#4a6b3a",
+    "silhouette": "M4 48 Q6 46 8 44 Q4 38 6 32 Q10 26 16 22 Q12 18 16 18 Q18 20 20 22 Q24 16 30 14 Q28 8 32 8 Q34 12 34 16 Q40 12 46 12 Q44 6 48 6 Q50 10 50 14 Q56 12 62 14 Q60 8 64 8 Q66 12 66 16 Q70 18 74 22 Q74 16 78 18 Q78 22 76 25 Q80 28 82 32 Q86 32 88 36 Q86 38 82 38 Q80 42 76 44 Q78 50 76 54 Q73 55 74 51 Q74 48 73 46 Q70 47 67 47 Q68 51 66 54 Q64 55 64 50 Q64 47 64 45 Q60 46 56 46 Q56 50 54 54 Q52 55 52 50 Q52 47 52 45 Q44 46 36 46 Q30 47 24 47 Q22 51 20 54 Q18 55 18 51 Q18 47 19 45 Q14 46 10 48 Q6 50 4 48 Z"
   },
   "parasaurolophus": {
     "displayName": "Parasaurolophus",
     "zone": 6,
     "fact": "The long tube on its head was hollow and could trumpet like a horn. Herds probably called to each other across long distances.",
-    "tint": "#8b5f7d"
+    "tint": "#8b5f7d",
+    "silhouette": "M2 50 Q10 46 18 42 Q26 38 32 34 Q38 30 42 27 Q46 24 49 21 Q52 18 56 15 Q60 13 63 11 Q60 8 56 6 Q52 4 48 3 Q44 2 42 4 Q42 6 46 7 Q50 8 54 10 Q57 12 59 14 Q63 15 66 16 Q70 16 72 17 Q74 18 73 20 Q70 20 67 19 Q64 20 62 22 Q63 24 65 23 Q64 26 60 25 Q58 28 57 31 Q58 36 59 41 Q61 46 63 50 Q63 54 60 53 Q57 50 56 47 Q56 51 55 54 Q53 55 53 50 Q52 47 52 43 Q51 39 51 36 Q47 36 44 35 Q43 39 41 42 Q39 45 40 48 Q43 49 43 51 Q42 53 39 52 Q36 51 33 51 Q32 47 35 43 Q38 39 41 36 Q34 38 27 41 Q19 45 11 49 Q5 51 2 51 Q1 51 2 50 Z"
   },
   "ankylosaurus": {
     "displayName": "Ankylosaurus",
     "zone": 7,
     "fact": "Ankylosaurus was a tank — covered in bony plates, with a heavy club on its tail. Even its eyelids had armour.",
-    "tint": "#5e5e3a"
+    "tint": "#5e5e3a",
+    "silhouette": "M4 48 Q1 48 2 45 Q6 42 11 40 Q8 38 6 36 Q4 33 8 32 Q10 34 13 36 Q16 32 21 30 Q19 26 23 26 Q24 28 24 30 Q30 26 38 26 Q40 22 44 22 Q44 26 44 28 Q52 26 60 28 Q62 24 66 24 Q66 28 65 30 Q72 32 78 36 Q82 38 85 42 Q88 44 91 42 Q94 44 94 47 Q91 50 87 50 Q83 50 80 47 Q77 44 73 42 Q70 46 66 48 Q67 51 65 54 Q63 55 63 50 Q63 47 62 45 Q56 46 50 46 Q44 47 38 46 Q34 50 30 54 Q27 55 28 51 Q29 47 31 45 Q24 46 18 47 Q12 48 7 48 Q5 49 4 48 Z"
   },
   "triceratops": {
     "displayName": "Triceratops",
     "zone": 8,
     "fact": "Triceratops had three horns and a huge bony frill protecting its neck. It lived right at the very end of the age of dinosaurs.",
-    "tint": "#6b3e3e"
+    "tint": "#6b3e3e",
+    "silhouette": "M3 48 Q8 46 12 44 Q16 38 22 34 Q30 30 40 28 Q44 24 44 20 Q42 14 46 12 Q49 14 50 18 Q52 14 55 14 Q56 18 57 22 Q60 18 64 18 Q66 14 68 12 Q72 8 76 10 Q78 12 76 14 Q73 16 71 18 Q76 18 80 20 Q83 22 84 25 Q82 26 78 25 Q74 24 70 24 Q72 26 73 28 Q70 28 68 26 Q66 24 64 24 Q65 28 64 30 Q62 28 61 26 Q58 26 56 26 Q56 30 56 34 Q58 40 60 46 Q62 50 60 52 Q57 52 56 48 Q54 44 52 41 Q52 47 51 53 Q49 55 48 50 Q48 46 47 42 Q40 44 33 44 Q30 48 26 52 Q24 53 24 49 Q26 45 28 42 Q22 44 16 46 Q12 49 8 50 Q4 50 3 48 Z M14 44 L13 50 L17 50 L17 44 Z M22 43 L21 50 L25 50 L25 43 Z M40 43 L39 50 L43 50 L43 43 Z M48 42 L48 50 L52 50 L52 42 Z"
   },
   "allosaurus": {
     "displayName": "Allosaurus",
     "zone": 9,
     "fact": "Allosaurus was a fierce hunter long before T. rex appeared. It opened its mouth wider than almost any other dinosaur and bit like an axe.",
-    "tint": "#8b4a2e"
+    "tint": "#8b4a2e",
+    "silhouette": "M2 46 Q12 42 22 38 Q30 36 38 34 Q44 30 48 26 Q50 20 52 14 Q54 10 58 8 Q64 6 70 8 Q74 10 76 12 Q78 14 76 16 Q70 16 66 14 Q68 17 70 19 Q68 20 65 19 Q63 16 60 16 Q58 18 56 18 Q57 22 58 26 Q60 30 60 36 Q62 42 62 48 Q60 53 58 50 Q56 45 54 41 Q53 49 52 54 Q50 55 50 50 Q50 46 49 43 Q46 44 42 45 Q44 50 44 54 Q42 55 42 51 Q42 47 41 45 Q34 46 26 46 Q14 47 4 48 Q1 48 2 46 Z"
   },
   "spinosaurus": {
     "displayName": "Spinosaurus",
     "zone": 10,
     "fact": "Spinosaurus had a huge sail on its back and was probably the only dinosaur that mostly lived in water, hunting fish like a giant crocodile.",
-    "tint": "#3a5e7d"
+    "tint": "#3a5e7d",
+    "silhouette": "M2 50 Q10 47 18 44 Q22 38 24 32 Q22 22 24 12 Q28 4 34 2 Q40 4 44 14 Q46 22 46 32 Q50 28 54 22 Q58 16 62 12 Q66 8 70 6 Q74 6 76 10 Q78 14 76 18 Q74 22 70 24 Q73 24 75 26 Q73 28 70 28 Q66 28 62 30 Q60 32 58 34 Q60 38 60 42 Q62 46 64 50 Q63 54 60 53 Q57 49 55 46 Q54 50 53 54 Q51 55 51 50 Q51 47 50 44 Q47 45 44 46 Q46 50 46 54 Q44 55 44 51 Q44 47 43 44 Q34 46 25 47 Q14 49 5 50 Q1 50 2 50 Z"
   },
   "brachiosaurus": {
     "displayName": "Brachiosaurus",
     "zone": 11,
     "fact": "Brachiosaurus held its neck high like a giraffe and could reach the tops of trees. It might have weighed more than ten elephants put together.",
-    "tint": "#6b7d3e"
+    "tint": "#6b7d3e",
+    "silhouette": "M2 46 Q8 38 18 32 Q28 28 38 28 Q46 26 52 24 Q56 20 58 14 Q60 8 64 4 Q68 2 72 4 Q74 6 75 8 Q77 8 78 6 Q80 8 79 10 Q77 12 76 12 Q74 10 72 10 Q68 10 65 12 Q63 14 62 17 Q66 16 70 16 Q72 18 68 19 Q63 19 60 20 Q58 24 58 28 Q60 34 60 40 Q62 46 62 50 Q60 55 58 51 Q56 47 55 44 Q54 47 53 50 Q53 54 52 54 Q50 55 50 51 Q50 47 51 44 Q44 45 38 46 Q32 47 26 47 Q24 50 22 54 Q20 55 20 51 Q20 47 22 44 Q14 44 8 46 Q4 48 2 46 Z"
   },
   "trex": {
     "displayName": "Tyrannosaurus rex",
     "zone": 12,
     "fact": "T. rex had the strongest bite of any land animal that ever lived. Its tiny arms were still strong enough to lift a grown person.",
-    "tint": "#3e3e3e"
+    "tint": "#3e3e3e",
+    "silhouette": "M2 38 Q10 34 18 30 Q26 28 32 28 Q36 26 40 24 Q44 18 48 12 Q54 6 62 4 Q70 4 76 6 Q82 8 84 12 Q84 16 82 18 Q78 20 74 20 Q70 20 66 18 Q70 22 72 24 Q68 26 64 24 Q60 22 56 22 Q54 24 52 24 Q55 28 56 32 Q56 36 56 40 Q58 44 60 48 Q62 52 60 54 Q57 55 56 51 Q54 47 52 44 Q51 49 50 54 Q48 55 48 50 Q48 47 47 44 Q44 45 41 46 Q43 50 43 54 Q41 55 41 51 Q41 47 42 44 Q43 41 44 38 Q40 39 36 40 Q28 41 20 42 Q12 42 4 43 Q1 43 2 38 Z M50 24 Q53 27 53 30 Q50 30 49 27 Q49 25 50 24 Z"
   }
 }
