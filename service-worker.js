@@ -1,6 +1,6 @@
 // service-worker.js
 // Cache-first for the app shell. Bumping CACHE_VERSION invalidates old caches.
-const CACHE_VERSION = 'dino-times-v1';
+const CACHE_VERSION = 'dino-times-v2';
 const SHELL = [
   './',
   './index.html',
