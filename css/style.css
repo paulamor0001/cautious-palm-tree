@@ -16,7 +16,7 @@ html, body {
   padding: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Fredoka', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   -webkit-user-select: none;
@@ -54,16 +54,17 @@ html, body {
 .view { animation: fadein 180ms ease-out; }
 @keyframes fadein { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 
-.view h1 { margin: 0 0 4px; font-size: 28px; }
+.view h1 { margin: 0 0 4px; font-size: 28px; letter-spacing: -0.01em; }
 .view .subtitle { color: var(--muted); margin: 0 0 20px; }
 
 .streak-card, .next-card {
   background: #fff; border-radius: 16px; padding: 16px 18px; margin-bottom: 14px;
   display: flex; align-items: center; gap: 14px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  box-shadow: 0 4px 12px rgba(60, 40, 20, 0.06);
 }
 
 .streak-card .num {
+  font-family: 'Fredoka', system-ui, sans-serif;
   font-size: 36px; font-weight: 700; color: var(--accent);
   min-width: 48px; text-align: center;
 }
@@ -157,34 +158,39 @@ html, body {
 
 .museum-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 12px;
 }
 
 .museum-card {
-  background: #fff; border-radius: 14px; padding: 12px;
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  background: #fff; border-radius: 16px; padding: 14px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  box-shadow: 0 2px 8px rgba(60, 40, 20, 0.08);
 }
 
 .museum-card .silhouette {
   width: 100%; aspect-ratio: 1.5;
-  border-radius: 8px;
+  background: #faf6ee;
+  border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 32px;
-  color: rgba(255,255,255,0.92);
+  padding: 8px;
 }
 
-.museum-card.locked .silhouette { opacity: 0.18; filter: grayscale(1); }
-.museum-card.complete .silhouette { box-shadow: 0 0 0 3px var(--accent) inset; }
+.museum-card .silhouette svg {
+  width: 100%; height: 100%; display: block;
+}
 
-.museum-card .name { font-size: 13px; font-weight: 600; text-align: center; }
+.museum-card.locked .silhouette { opacity: 0.28; filter: grayscale(1); }
+.museum-card.complete .silhouette { box-shadow: 0 0 0 2px var(--accent) inset; }
+
+.museum-card .name { font-size: 14px; font-weight: 600; text-align: center; }
 .museum-card .progress { font-size: 12px; color: var(--muted); }
 
 .museum-card button.fact-btn {
-  border: 0; background: rgba(0,0,0,0.06);
-  border-radius: 999px; padding: 4px 10px; font-size: 11px;
+  border: 0; background: rgba(60, 40, 20, 0.08);
+  border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 600;
   cursor: pointer; margin-top: 4px;
+  min-height: 30px;
 }
 
 .fact-modal {
@@ -196,7 +202,7 @@ html, body {
 
 .fact-modal .panel {
   background: #fff; border-radius: 20px;
-  padding: 24px; max-width: 360px; width: 100%;
+  padding: 28px; max-width: 400px; width: 100%;
 }
 
 .fact-modal h3 { margin: 0 0 8px; }
@@ -220,28 +226,60 @@ html, body {
 }
 
 .egg-row {
-  display: flex; gap: 12px; flex-wrap: wrap;
+  display: flex; gap: 14px; flex-wrap: wrap;
 }
 .egg {
-  width: 56px; height: 70px;
+  position: relative;
+  width: 60px; height: 76px;
   background: #fff; border-radius: 50% 50% 45% 45%;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  font-size: 11px; color: #5a8c3d; font-weight: 700;
+  box-shadow: 0 4px 12px rgba(60, 40, 20, 0.16);
+  border-top: 4px solid var(--egg-tint, #5a8c3d);
+}
+.egg .egg-meta {
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
 }
 .egg .ticks { font-size: 22px; font-weight: 700; color: #2d5a1f; line-height: 1; }
-.egg .ticks-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; }
+.egg .ticks-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #5a8c3d; }
+.egg .egg-shell { display: none; }
 
 .dino-row {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 10px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
 }
 .dino {
-  background: rgba(255,255,255,0.85); border-radius: 12px; padding: 10px;
+  background: rgba(255,255,255,0.9); border-radius: 14px; padding: 12px 10px;
   text-align: center;
+  box-shadow: 0 2px 6px rgba(60, 40, 20, 0.06);
 }
-.dino .icon { font-size: 32px; line-height: 1; }
-.dino .name { font-weight: 700; margin-top: 4px; }
+.dino .icon {
+  position: relative;
+  width: 100%; aspect-ratio: 1.5;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+}
+.dino .icon svg {
+  width: 100%; height: 100%; display: block;
+  transform-origin: center;
+  transition: transform 240ms ease-out;
+}
+.dino .icon .egg-shell-bg {
+  position: absolute; top: 50%; left: 50%;
+  width: 70%; aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.05);
+}
+.dino .icon .accent {
+  position: absolute; top: 8px; right: 8px;
+  width: 10px; height: 10px;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+}
+.dino.stage-hatchling .icon svg { position: relative; z-index: 1; }
+.dino .name { font-weight: 700; margin-top: 6px; }
 .dino .stage { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
 
 .empty-state {
