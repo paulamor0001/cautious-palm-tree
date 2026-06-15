@@ -31,13 +31,19 @@ describe('parseFactKey', () => {
 
 describe('pickFactKey', () => {
   it('picks proportionally to weight', () => {
-    // Heavily weight 3x7. With rng=0.0, sample should fall in 3x1's bucket.
-    // With rng near 1.0 it should fall in the last fact (3x12).
     const facts = zone();
     facts['3x7'].weight = 100;
     // Total weight = 11 * 1.0 + 100 = 111. Pick at 0.5 → 55.5 cumulative → still inside 3x7's slab.
     const key = pickFactKey(facts, seq([0.5]));
     expect(key).toBe('3x7');
+  });
+
+  it('rng=0 returns the first entry', () => {
+    expect(pickFactKey(zone(), seq([0]))).toBe('3x1');
+  });
+
+  it('rng close to 1 returns the last entry (fallback)', () => {
+    expect(pickFactKey(zone(), seq([0.9999999999]))).toBe('3x12');
   });
 
   it('returns a valid key from the zone for any rng value', () => {
@@ -60,11 +66,19 @@ describe('generateDistractors', () => {
 
   it('prefers neighbouring facts as distractors', () => {
     const distractors = generateDistractors(7, 8, seq([0, 0, 0, 0, 0]));
-    // Neighbours of 7x8: 6x7=42, 6x8=48, 6x9=54, 7x7=49, 7x9=63, 8x7=56(same), 8x8=64, 8x9=72
-    // At least 2 of the 3 should come from this set.
+    // Neighbours of 7x8: 6x7=42, 6x8=48, 6x9=54, 7x7=49, 7x9=63, 8x7=56(filtered), 8x8=64, 8x9=72
     const neighbours = new Set([42, 48, 54, 49, 63, 64, 72]);
     const hits = distractors.filter(d => neighbours.has(d)).length;
     expect(hits).toBeGreaterThanOrEqual(2);
+  });
+
+  it('pads with offset fallbacks when unique neighbours are scarce (a=1, b=1)', () => {
+    // 1x1 unique neighbours: 1x2=2, 2x1=2 (dup), 2x2=4 → {2, 4}. Pad supplies the third.
+    const d = generateDistractors(1, 1, seq([0, 0, 0, 0, 0]));
+    expect(d).toHaveLength(3);
+    expect(new Set(d).size).toBe(3);
+    expect(d).not.toContain(1);
+    for (const v of d) expect(v).toBeGreaterThan(0);
   });
 });
 

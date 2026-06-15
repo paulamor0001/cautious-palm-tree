@@ -29,7 +29,7 @@ export function generateDistractors(a, b, rng, count = 3) {
       const na = a + da, nb = b + db;
       if (na < 1 || nb < 1) continue;
       const v = na * nb;
-      if (v !== answer && v > 0) neighbours.push(v);
+      if (v !== answer) neighbours.push(v);
     }
   }
   // unique, shuffled
