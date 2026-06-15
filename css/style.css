@@ -1,0 +1,52 @@
+:root {
+  --bg: #f5efe6;
+  --ink: #2a2118;
+  --muted: #847467;
+  --dig: #6b4423;
+  --museum: #2d3e50;
+  --sanctuary: #2d5a1f;
+  --accent: #f7b500;
+  --tap: 56px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  overscroll-behavior: none;
+}
+
+#app {
+  min-height: 100vh;
+  padding: 24px 20px 96px;
+}
+
+#tabbar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #fff;
+  border-top: 1px solid #ddd;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+#tabbar button {
+  border: 0;
+  background: transparent;
+  min-height: var(--tap);
+  font-size: 14px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+#tabbar button[aria-current="page"] { color: var(--ink); font-weight: 600; }
+
+.loading { text-align: center; color: var(--muted); margin-top: 40vh; }
