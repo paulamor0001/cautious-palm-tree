@@ -42,3 +42,11 @@ tabbarEl.addEventListener('click', (e) => {
 
 tabbarEl.hidden = false;
 switchTo('home');
+
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js').catch(err => {
+      console.warn('SW registration failed', err);
+    });
+  });
+}
