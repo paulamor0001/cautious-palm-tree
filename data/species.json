@@ -1,0 +1,74 @@
+{
+  "compsognathus": {
+    "displayName": "Compsognathus",
+    "zone": 1,
+    "fact": "Compsognathus was about the size of a chicken — one of the smallest dinosaurs ever found. It chased lizards and insects on its long, thin legs.",
+    "tint": "#a78b5f"
+  },
+  "velociraptor": {
+    "displayName": "Velociraptor",
+    "zone": 2,
+    "fact": "Velociraptors were about the size of a turkey and covered in feathers. The big claw on each foot was for pinning down prey, not slashing.",
+    "tint": "#7a3e2e"
+  },
+  "pterodactyl": {
+    "displayName": "Pterodactyl",
+    "zone": 3,
+    "fact": "Pterodactyls were flying reptiles, not dinosaurs. They had wings made of skin stretched from one very long finger to their body.",
+    "tint": "#5f7d9c"
+  },
+  "iguanodon": {
+    "displayName": "Iguanodon",
+    "zone": 4,
+    "fact": "Iguanodon had a spike on each thumb that scientists first thought went on its nose. It chewed plants with cheeks full of grinding teeth.",
+    "tint": "#6b8a3e"
+  },
+  "stegosaurus": {
+    "displayName": "Stegosaurus",
+    "zone": 5,
+    "fact": "Stegosaurus had two rows of bony plates down its back that may have helped it warm up in the sun. Its brain was about the size of a walnut.",
+    "tint": "#4a6b3a"
+  },
+  "parasaurolophus": {
+    "displayName": "Parasaurolophus",
+    "zone": 6,
+    "fact": "The long tube on its head was hollow and could trumpet like a horn. Herds probably called to each other across long distances.",
+    "tint": "#8b5f7d"
+  },
+  "ankylosaurus": {
+    "displayName": "Ankylosaurus",
+    "zone": 7,
+    "fact": "Ankylosaurus was a tank — covered in bony plates, with a heavy club on its tail. Even its eyelids had armour.",
+    "tint": "#5e5e3a"
+  },
+  "triceratops": {
+    "displayName": "Triceratops",
+    "zone": 8,
+    "fact": "Triceratops had three horns and a huge bony frill protecting its neck. It lived right at the very end of the age of dinosaurs.",
+    "tint": "#6b3e3e"
+  },
+  "allosaurus": {
+    "displayName": "Allosaurus",
+    "zone": 9,
+    "fact": "Allosaurus was a fierce hunter long before T. rex appeared. It opened its mouth wider than almost any other dinosaur and bit like an axe.",
+    "tint": "#8b4a2e"
+  },
+  "spinosaurus": {
+    "displayName": "Spinosaurus",
+    "zone": 10,
+    "fact": "Spinosaurus had a huge sail on its back and was probably the only dinosaur that mostly lived in water, hunting fish like a giant crocodile.",
+    "tint": "#3a5e7d"
+  },
+  "brachiosaurus": {
+    "displayName": "Brachiosaurus",
+    "zone": 11,
+    "fact": "Brachiosaurus held its neck high like a giraffe and could reach the tops of trees. It might have weighed more than ten elephants put together.",
+    "tint": "#6b7d3e"
+  },
+  "trex": {
+    "displayName": "Tyrannosaurus rex",
+    "zone": 12,
+    "fact": "T. rex had the strongest bite of any land animal that ever lived. Its tiny arms were still strong enough to lift a grown person.",
+    "tint": "#3e3e3e"
+  }
+}
