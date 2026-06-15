@@ -50,3 +50,30 @@ html, body {
 #tabbar button[aria-current="page"] { color: var(--ink); font-weight: 600; }
 
 .loading { text-align: center; color: var(--muted); margin-top: 40vh; }
+
+.view { animation: fadein 180ms ease-out; }
+@keyframes fadein { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+.view h1 { margin: 0 0 4px; font-size: 28px; }
+.view .subtitle { color: var(--muted); margin: 0 0 20px; }
+
+.streak-card, .next-card {
+  background: #fff; border-radius: 16px; padding: 16px 18px; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+.streak-card .num {
+  font-size: 36px; font-weight: 700; color: var(--accent);
+  min-width: 48px; text-align: center;
+}
+
+.primary-btn {
+  width: 100%; min-height: var(--tap);
+  background: var(--dig); color: #fff;
+  border: 0; border-radius: 14px;
+  font-size: 18px; font-weight: 600;
+  margin-top: 12px;
+  cursor: pointer;
+}
+.primary-btn:active { transform: scale(0.98); }
