@@ -27,7 +27,7 @@ export function mount(container, ctx) {
     card.className = `museum-card ${isComplete ? 'complete' : ''} ${zoneUnlocked ? '' : 'locked'}`;
     card.innerHTML = `
       <div class="silhouette" style="color:${info.tint};">
-        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="${info.silhouette}" fill="currentColor"/></svg>
+        <svg viewBox="${info.viewBox || '0 0 100 60'}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor">${info.silhouette}</svg>
       </div>
       <div class="name">${info.displayName}</div>
       <div class="progress">${zoneUnlocked ? `${museumEntry.bones}/${BONES_PER_SPECIES} bones` : `Locked (${zone}× zone)`}</div>
@@ -45,12 +45,17 @@ export function mount(container, ctx) {
 }
 
 function showFact(info, container) {
+  const credit = info.credit;
+  const creditLine = credit
+    ? `<p class="credit">Silhouette: <em>${credit.artist || 'Public domain'}</em> · ${credit.license}</p>`
+    : '';
   const modal = document.createElement('div');
   modal.className = 'fact-modal';
   modal.innerHTML = `
     <div class="panel" role="dialog" aria-modal="true" aria-label="${info.displayName}">
       <h3>${info.displayName}</h3>
       <p>${info.fact}</p>
+      ${creditLine}
       <button type="button">Close</button>
     </div>
   `;

@@ -100,7 +100,7 @@ export function mount(container, ctx) {
       <div class="dino stage-${stage}">
         <div class="icon" style="color:${info.tint};">
           ${isHatchling ? '<div class="egg-shell-bg" aria-hidden="true"></div>' : ''}
-          <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="transform:scale(${scale});"><path d="${info.silhouette}" fill="currentColor"/></svg>
+          <svg viewBox="${info.viewBox || '0 0 100 60'}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" style="transform:scale(${scale});">${info.silhouette}</svg>
           ${isAdult ? '<div class="accent" aria-hidden="true"></div>' : ''}
         </div>
         <div class="name">${escapeHtml(d.name)}</div>

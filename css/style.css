@@ -207,6 +207,12 @@ html, body {
 
 .fact-modal h3 { margin: 0 0 8px; }
 .fact-modal p  { margin: 0 0 16px; line-height: 1.5; }
+.fact-modal .credit {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: -8px;
+  margin-bottom: 16px;
+}
 .fact-modal button {
   width: 100%; min-height: 48px;
   background: var(--museum); color: #fff;
