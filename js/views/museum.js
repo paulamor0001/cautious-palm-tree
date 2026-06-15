@@ -26,7 +26,9 @@ export function mount(container, ctx) {
     const card = document.createElement('div');
     card.className = `museum-card ${isComplete ? 'complete' : ''} ${zoneUnlocked ? '' : 'locked'}`;
     card.innerHTML = `
-      <div class="silhouette" style="background:${info.tint};">${zoneUnlocked ? '🦴' : '?'}</div>
+      <div class="silhouette" style="color:${info.tint};">
+        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="${info.silhouette}" fill="currentColor"/></svg>
+      </div>
       <div class="name">${info.displayName}</div>
       <div class="progress">${zoneUnlocked ? `${museumEntry.bones}/${BONES_PER_SPECIES} bones` : `Locked (${zone}× zone)`}</div>
       ${isComplete ? `<button class="fact-btn" type="button" data-species="${key}">Read fact</button>` : ''}

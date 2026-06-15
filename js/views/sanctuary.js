@@ -6,7 +6,7 @@ import {
 import { sfx } from '../audio.js';
 
 const STAGE_ORDER = { hatchling: 0, juvenile: 1, adult: 2 };
-const STAGE_ICON = { hatchling: '🥚', juvenile: '🦖', adult: '🦕' };
+const STAGE_SCALE = { hatchling: 0.5, juvenile: 0.75, adult: 1 };
 
 function speciesZone(key) {
   for (const [zone, name] of Object.entries(SPECIES_BY_ZONE)) {
@@ -78,21 +78,33 @@ export function mount(container, ctx) {
   }
 
   function eggCard(egg) {
+    const tint = species[egg.species]?.tint ?? '#5a8c3d';
     return `
-      <div class="egg">
-        <div class="ticks">${egg.ticksRemaining}</div>
-        <div class="ticks-label">days</div>
+      <div class="egg" style="--egg-tint:${tint};">
+        <div class="egg-shell"></div>
+        <div class="egg-meta">
+          <div class="ticks">${egg.ticksRemaining}</div>
+          <div class="ticks-label">${egg.ticksRemaining === 1 ? 'day' : 'days'}</div>
+        </div>
       </div>
     `;
   }
 
   function dinoCard(d) {
     const stage = d.stage ?? 'hatchling';
+    const info = species[d.species];
+    const scale = STAGE_SCALE[stage] ?? 1;
+    const isHatchling = stage === 'hatchling';
+    const isAdult = stage === 'adult';
     return `
-      <div class="dino">
-        <div class="icon">${STAGE_ICON[stage]}</div>
+      <div class="dino stage-${stage}">
+        <div class="icon" style="color:${info.tint};">
+          ${isHatchling ? '<div class="egg-shell-bg" aria-hidden="true"></div>' : ''}
+          <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="transform:scale(${scale});"><path d="${info.silhouette}" fill="currentColor"/></svg>
+          ${isAdult ? '<div class="accent" aria-hidden="true"></div>' : ''}
+        </div>
         <div class="name">${escapeHtml(d.name)}</div>
-        <div class="stage">${stage} ${species[d.species].displayName}</div>
+        <div class="stage">${stage} ${info.displayName}</div>
       </div>
     `;
   }
