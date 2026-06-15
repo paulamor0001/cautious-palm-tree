@@ -45,9 +45,9 @@ export function defaultState(now) {
 
 export function applyDailyTick(state, now) {
   const today = isoDate(now);
-  if (state.lastPlayed === today) return state;
-
   const diff = daysBetween(state.lastPlayed, today);
+  if (diff <= 0) return state;
+
   const streak = diff === 1 ? state.streak + 1 : 1;
   const incubating = state.incubating.map(egg => ({
     ...egg,
@@ -57,8 +57,24 @@ export function applyDailyTick(state, now) {
   return { ...state, lastPlayed: today, streak, incubating };
 }
 
+export function markPlayed(state, now) {
+  const today = isoDate(now);
+  if (state.lastPlayed === today) return state;
+  return { ...state, lastPlayed: today };
+}
+
 export function saveState(state) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function looksLikeValidState(s) {
+  return s
+    && typeof s === 'object'
+    && s.version === STATE_VERSION
+    && s.zones && typeof s.zones === 'object'
+    && s.museum && typeof s.museum === 'object'
+    && Array.isArray(s.sanctuary)
+    && Array.isArray(s.incubating);
 }
 
 export function loadState(now) {
@@ -66,7 +82,7 @@ export function loadState(now) {
   if (!raw) return defaultState(now);
   try {
     const parsed = JSON.parse(raw);
-    if (!parsed || parsed.version !== STATE_VERSION) return defaultState(now);
+    if (!looksLikeValidState(parsed)) return defaultState(now);
     return applyDailyTick(parsed, now);
   } catch {
     return defaultState(now);

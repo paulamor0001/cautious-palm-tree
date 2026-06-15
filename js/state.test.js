@@ -1,7 +1,7 @@
 // js/state.test.js
 import { describe, it, expect, beforeEach } from 'vitest';
 import {
-  loadState, saveState, defaultState, applyDailyTick, isZoneUnlocked
+  loadState, saveState, defaultState, applyDailyTick, markPlayed, isZoneUnlocked
 } from './state.js';
 import { STORAGE_KEY, ZONES, STATE_VERSION } from './constants.js';
 
@@ -79,6 +79,35 @@ describe('applyDailyTick', () => {
     const next = applyDailyTick(s, day('2026-06-16'));
     expect(next.incubating[0].ticksRemaining).toBe(0);
   });
+
+  it('clock skew to an earlier date → unchanged (no streak loss)', () => {
+    const s = defaultState(day('2026-06-15'));
+    s.incubating = [{ id: 'e1', species: 'trex', ticksRemaining: 2 }];
+    const next = applyDailyTick(s, day('2026-06-14'));
+    expect(next).toBe(s);
+  });
+});
+
+describe('markPlayed', () => {
+  it('updates lastPlayed when called on a new day', () => {
+    const s = defaultState(day('2026-06-15'));
+    const next = markPlayed(s, day('2026-06-16'));
+    expect(next.lastPlayed).toBe('2026-06-16');
+  });
+
+  it('does not change streak or eggs', () => {
+    const s = defaultState(day('2026-06-15'));
+    s.streak = 5;
+    s.incubating = [{ id: 'e1', species: 'trex', ticksRemaining: 2 }];
+    const next = markPlayed(s, day('2026-06-16'));
+    expect(next.streak).toBe(5);
+    expect(next.incubating[0].ticksRemaining).toBe(2);
+  });
+
+  it('returns the same reference when called on the same day', () => {
+    const s = defaultState(day('2026-06-15'));
+    expect(markPlayed(s, day('2026-06-15'))).toBe(s);
+  });
 });
 
 describe('loadState / saveState', () => {
@@ -108,6 +137,14 @@ describe('loadState / saveState', () => {
     localStorage.setItem(STORAGE_KEY, 'not json');
     const s = loadState(day('2026-06-15'));
     expect(s.version).toBe(STATE_VERSION);
+  });
+
+  it('falls back to default state if stored JSON has the right version but missing fields', () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: STATE_VERSION }));
+    const s = loadState(day('2026-06-15'));
+    expect(s.zones).toBeDefined();
+    expect(s.museum).toBeDefined();
+    expect(Array.isArray(s.incubating)).toBe(true);
   });
 });
 
