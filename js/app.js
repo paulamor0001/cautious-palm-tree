@@ -13,12 +13,16 @@ const tabbarEl = document.getElementById('tabbar');
 
 const ctx = {
   state: loadState(new Date()),
+  species: null,
   save() { saveState(this.state); },
   navigate(tab) { switchTo(tab); },
 };
 
 setMuted(ctx.state.muted);
 ctx.save(); // persist any tick that happened on load
+
+// Preload species data so every view's mount is synchronous and unmount-safe.
+ctx.species = await fetch('./data/species.json').then(r => r.json());
 
 let currentUnmount = null;
 

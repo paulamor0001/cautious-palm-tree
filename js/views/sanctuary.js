@@ -5,22 +5,8 @@ import {
 } from '../constants.js';
 import { sfx } from '../audio.js';
 
-let speciesData = null;
-
-async function loadSpecies() {
-  if (speciesData) return speciesData;
-  const res = await fetch('/data/species.json');
-  speciesData = await res.json();
-  return speciesData;
-}
-
-function stageFor(speciesKey, state) {
-  const zone = speciesZone(speciesKey);
-  const acc = zoneAccuracy(state.zones[String(zone)].facts);
-  if (acc >= STAGE_ADULT_AT) return 'adult';
-  if (acc >= STAGE_JUVENILE_AT) return 'juvenile';
-  return 'hatchling';
-}
+const STAGE_ORDER = { hatchling: 0, juvenile: 1, adult: 2 };
+const STAGE_ICON = { hatchling: '🥚', juvenile: '🦖', adult: '🦕' };
 
 function speciesZone(key) {
   for (const [zone, name] of Object.entries(SPECIES_BY_ZONE)) {
@@ -29,10 +15,22 @@ function speciesZone(key) {
   return 1;
 }
 
-const STAGE_ICON = { hatchling: '🥚', juvenile: '🦖', adult: '🦕' };
+function computedStageFor(speciesKey, state) {
+  const zone = speciesZone(speciesKey);
+  const acc = zoneAccuracy(state.zones[String(zone)].facts);
+  if (acc >= STAGE_ADULT_AT) return 'adult';
+  if (acc >= STAGE_JUVENILE_AT) return 'juvenile';
+  return 'hatchling';
+}
 
-export async function mount(container, ctx) {
-  const species = await loadSpecies();
+function stageFor(dino, state) {
+  const computed = computedStageFor(dino.species, state);
+  const stored = dino.stage ?? 'hatchling';
+  return STAGE_ORDER[computed] > STAGE_ORDER[stored] ? computed : stored;
+}
+
+export function mount(container, ctx) {
+  const species = ctx.species;
   container.innerHTML = '';
   const view = document.createElement('section');
   view.className = 'view';
@@ -42,11 +40,23 @@ export async function mount(container, ctx) {
     <div class="sanctuary" data-role="root"></div>
   `;
   container.appendChild(view);
+  promoteStoredStages();
   render();
 
-  // If any egg is ready, prompt to hatch (one at a time).
   const ready = ctx.state.incubating.find(e => e.ticksRemaining <= 0);
   if (ready) showHatch(ready);
+
+  function promoteStoredStages() {
+    let changed = false;
+    for (const dino of ctx.state.sanctuary) {
+      const next = stageFor(dino, ctx.state);
+      if (next !== dino.stage) {
+        dino.stage = next;
+        changed = true;
+      }
+    }
+    if (changed) ctx.save();
+  }
 
   function render() {
     const root = view.querySelector('[data-role="root"]');
@@ -77,7 +87,7 @@ export async function mount(container, ctx) {
   }
 
   function dinoCard(d) {
-    const stage = stageFor(d.species, ctx.state);
+    const stage = d.stage ?? 'hatchling';
     return `
       <div class="dino">
         <div class="icon">${STAGE_ICON[stage]}</div>
@@ -92,7 +102,7 @@ export async function mount(container, ctx) {
     const modal = document.createElement('div');
     modal.className = 'fact-modal hatch-modal';
     modal.innerHTML = `
-      <div class="panel" role="dialog">
+      <div class="panel" role="dialog" aria-modal="true">
         <h3>An egg hatched!</h3>
         <p>It's a baby ${info.displayName}. Give it a name.</p>
         <input type="text" maxlength="12" placeholder="Name (12 letters)" />
@@ -105,12 +115,15 @@ export async function mount(container, ctx) {
     modal.querySelector('[data-action="confirm"]').addEventListener('click', () => {
       const raw = input.value.trim().slice(0, 12) || info.displayName;
       ctx.state.incubating = ctx.state.incubating.filter(e => e.id !== egg.id);
-      ctx.state.sanctuary.push({
+      const newDino = {
         id: egg.id,
         species: egg.species,
         name: raw,
+        stage: 'hatchling',
         hatchedAt: new Date().toISOString(),
-      });
+      };
+      newDino.stage = stageFor(newDino, ctx.state);
+      ctx.state.sanctuary.push(newDino);
       ctx.save();
       sfx.fanfare();
       modal.remove();

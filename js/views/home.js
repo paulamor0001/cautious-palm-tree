@@ -12,7 +12,7 @@ export function mount(container, ctx) {
 
   const totalBones = Object.values(state.museum).reduce((s, m) => s + m.bones, 0);
   const totalDinos = state.sanctuary.length;
-  const eggsIncubating = state.incubating.length;
+  const eggsIncubating = state.incubating.filter(e => e.ticksRemaining > 0).length;
 
   container.innerHTML = `
     <section class="view">

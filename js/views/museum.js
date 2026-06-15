@@ -1,17 +1,8 @@
 // js/views/museum.js
 import { BONES_PER_SPECIES, ALL_SPECIES } from '../constants.js';
 
-let speciesData = null;
-
-async function loadSpecies() {
-  if (speciesData) return speciesData;
-  const res = await fetch('/data/species.json');
-  speciesData = await res.json();
-  return speciesData;
-}
-
-export async function mount(container, ctx) {
-  const species = await loadSpecies();
+export function mount(container, ctx) {
+  const species = ctx.species;
 
   container.innerHTML = '';
   const view = document.createElement('section');
@@ -55,7 +46,7 @@ function showFact(info, container) {
   const modal = document.createElement('div');
   modal.className = 'fact-modal';
   modal.innerHTML = `
-    <div class="panel" role="dialog" aria-label="${info.displayName}">
+    <div class="panel" role="dialog" aria-modal="true" aria-label="${info.displayName}">
       <h3>${info.displayName}</h3>
       <p>${info.fact}</p>
       <button type="button">Close</button>

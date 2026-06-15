@@ -99,13 +99,15 @@ export function mount(container, ctx) {
   }
 
   function onWrong(btn) {
+    inputLocked = true;
     sfx.wrong();
     btn.classList.add('greyed');
     wrongCountThisQ++;
     if (wrongCountThisQ >= 2) {
-      inputLocked = true;
       persistAnswer(currentFact.key, 'shown');
       showAnswerThenAdvance();
+    } else {
+      inputLocked = false;
     }
   }
 
