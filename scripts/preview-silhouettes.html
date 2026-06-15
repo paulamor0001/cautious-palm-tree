@@ -14,7 +14,9 @@
         color: #2a2118;
         font-family: 'Fredoka', system-ui, sans-serif;
       }
-      h1 { margin: 0 0 16px; }
+      h1 { margin: 0 0 8px; }
+      .sub { color: #847467; margin: 0 0 20px; }
+      h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #847467; margin: 32px 0 12px; }
       .grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -27,7 +29,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         box-shadow: 0 2px 8px rgba(60, 40, 20, 0.08);
       }
       .silhouette {
@@ -38,25 +40,29 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 8px;
+        padding: 10px;
       }
       .silhouette svg { width: 100%; height: 100%; display: block; }
-      .name { font-size: 14px; font-weight: 600; text-align: center; }
+      .name { font-size: 15px; font-weight: 600; text-align: center; }
+      .credit { font-size: 10px; color: #847467; text-align: center; }
       .compare {
-        margin-top: 32px;
+        margin-top: 12px;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        gap: 12px;
+        gap: 10px;
       }
       .compare .card { padding: 8px; }
+      .compare .silhouette { padding: 6px; }
       .compare .name { font-size: 11px; }
+      .compare .credit { display: none; }
     </style>
   </head>
   <body>
     <h1>Dino silhouettes — readability check</h1>
-    <p>Each silhouette rendered with the species' tint colour on an off-white card. Below, the same set scaled small (museum thumbnail size).</p>
+    <p class="sub">Real PhyloPic silhouettes rendered with each species' tint colour. The lower row mirrors museum thumbnail size.</p>
+    <h2>Full-size readability</h2>
     <div class="grid" id="grid"></div>
-    <h2>Small-size check (museum thumbnail)</h2>
+    <h2>Museum-thumbnail size</h2>
     <div class="compare" id="compare"></div>
     <script>
       (async () => {
@@ -65,18 +71,23 @@
         const compare = document.getElementById('compare');
         for (const key of Object.keys(data)) {
           const info = data[key];
+          const vb = info.viewBox || '0 0 100 60';
+          const creditLine = info.credit
+            ? `<div class="credit">${info.credit.artist || 'Public domain'} · ${info.credit.license}</div>`
+            : '';
           grid.insertAdjacentHTML('beforeend', `
             <div class="card">
               <div class="silhouette" style="color:${info.tint};">
-                <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><path d="${info.silhouette}" fill="currentColor"/></svg>
+                <svg viewBox="${vb}" xmlns="http://www.w3.org/2000/svg" fill="currentColor">${info.silhouette}</svg>
               </div>
               <div class="name">${info.displayName}</div>
+              ${creditLine}
             </div>
           `);
           compare.insertAdjacentHTML('beforeend', `
             <div class="card">
               <div class="silhouette" style="color:${info.tint};">
-                <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><path d="${info.silhouette}" fill="currentColor"/></svg>
+                <svg viewBox="${vb}" xmlns="http://www.w3.org/2000/svg" fill="currentColor">${info.silhouette}</svg>
               </div>
               <div class="name">${info.displayName}</div>
             </div>
