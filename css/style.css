@@ -186,6 +186,37 @@ html, body {
 .museum-card .name { font-size: 14px; font-weight: 600; text-align: center; }
 .museum-card .progress { font-size: 12px; color: var(--muted); }
 
+.museum-card .bones {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 3px;
+  width: 100%;
+  padding: 0 2px;
+}
+.museum-card .bone {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 32/16;
+  transition: color 220ms ease-out, transform 220ms ease-out;
+}
+.museum-card .bone.empty {
+  color: rgba(0,0,0,0.10);
+}
+.museum-card .bone.filled {
+  color: var(--bone-tint);
+  filter: drop-shadow(0 1px 0 rgba(255,255,255,0.6));
+}
+.museum-card.complete .bone.filled {
+  color: var(--accent);
+  animation: bonePulse 600ms ease-out;
+}
+@keyframes bonePulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+.museum-card.locked .bones { display: none; }
+
 .museum-card button.fact-btn {
   border: 0; background: rgba(60, 40, 20, 0.08);
   border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 600;

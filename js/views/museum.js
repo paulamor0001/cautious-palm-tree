@@ -1,6 +1,24 @@
 // js/views/museum.js
 import { BONES_PER_SPECIES, ALL_SPECIES } from '../constants.js';
 
+const BONE_SVG = `
+  <circle cx="4" cy="5" r="4"/>
+  <circle cx="4" cy="11" r="4"/>
+  <circle cx="28" cy="5" r="4"/>
+  <circle cx="28" cy="11" r="4"/>
+  <rect x="4" y="5" width="24" height="6"/>
+`;
+
+function bonesRow(collected, total, tint) {
+  let html = '<div class="bones" style="--bone-tint:' + tint + ';">';
+  for (let i = 0; i < total; i++) {
+    const filled = i < collected ? 'filled' : 'empty';
+    html += `<svg class="bone ${filled}" viewBox="0 0 32 16" aria-hidden="true" fill="currentColor">${BONE_SVG}</svg>`;
+  }
+  html += '</div>';
+  return html;
+}
+
 export function mount(container, ctx) {
   const species = ctx.species;
 
@@ -25,12 +43,15 @@ export function mount(container, ctx) {
 
     const card = document.createElement('div');
     card.className = `museum-card ${isComplete ? 'complete' : ''} ${zoneUnlocked ? '' : 'locked'}`;
+    const progressBlock = zoneUnlocked
+      ? bonesRow(museumEntry.bones, BONES_PER_SPECIES, info.tint)
+      : `<div class="progress">Locked (${zone}× zone)</div>`;
     card.innerHTML = `
       <div class="silhouette" style="color:${info.tint};">
         <svg viewBox="${info.viewBox || '0 0 100 60'}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor">${info.silhouette}</svg>
       </div>
       <div class="name">${info.displayName}</div>
-      <div class="progress">${zoneUnlocked ? `${museumEntry.bones}/${BONES_PER_SPECIES} bones` : `Locked (${zone}× zone)`}</div>
+      ${progressBlock}
       ${isComplete ? `<button class="fact-btn" type="button" data-species="${key}">Read fact</button>` : ''}
     `;
     grid.appendChild(card);
