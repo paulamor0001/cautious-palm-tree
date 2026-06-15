@@ -1,11 +1,11 @@
 import { zoneAccuracy } from '../facts.js';
-import { SPECIES_BY_ZONE, ZONES } from '../constants.js';
+import { SPECIES_BY_ZONE, ZONES, ZONE_UNLOCK_ACCURACY } from '../constants.js';
 
 export function mount(container, ctx) {
   const { state, navigate } = ctx;
 
   const unlocked = ZONES.filter(z => state.zones[String(z)].unlocked);
-  const suggested = unlocked.find(z => zoneAccuracy(state.zones[String(z)].facts) < 0.8) ?? unlocked.at(-1);
+  const suggested = unlocked.find(z => zoneAccuracy(state.zones[String(z)].facts) < ZONE_UNLOCK_ACCURACY) ?? unlocked.at(-1);
   const speciesName = SPECIES_BY_ZONE[suggested];
 
   container.innerHTML = `
