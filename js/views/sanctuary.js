@@ -56,14 +56,14 @@ const SCENE_SVG = `
       <path d="M360 225 q-7 -24 -3 -38 q4 -10 10 -10 q6 0 10 10 q4 14 -3 38 z"/>
     </g>
 
-    <!-- Mid ginkgo tree (left) -->
-    <g transform="translate(20 225)" fill="#2f5018">
+    <!-- Mid ginkgo tree (right side, tucked behind dino plots) -->
+    <g transform="translate(350 225)" fill="#2f5018">
       <rect x="-2" y="-50" width="4" height="46" fill="#3a2a1a"/>
       <path d="M0 -50 q-22 -4 -28 -18 q14 4 22 14 q-10 -16 -4 -30 q10 14 10 28 q4 -14 16 -22 q-2 16 -10 28 q14 -10 28 -8 q-12 12 -34 8 z"/>
     </g>
 
-    <!-- Mid cycad cluster (right) -->
-    <g transform="translate(370 235)" fill="#365a1a">
+    <!-- Mid cycad cluster (left mid-distance) -->
+    <g transform="translate(50 235)" fill="#365a1a">
       <path d="M0 0 q-3 -18 -16 -28 q4 18 0 28 z"/>
       <path d="M0 0 q3 -18 16 -28 q-4 18 0 28 z"/>
       <path d="M0 0 q-1 -22 -6 -36 q-3 22 -1 36 z"/>
@@ -71,32 +71,13 @@ const SCENE_SVG = `
       <ellipse cx="0" cy="-4" rx="6" ry="3" fill="#604c20"/>
     </g>
 
-    <!-- Foreground ferns scattered along the ground -->
-    <g fill="#244010" opacity="0.85">
-      <!-- left fern -->
-      <g transform="translate(-4 360)">
-        <path d="M0 0 q-4 -28 -2 -52 q2 12 4 24 q-8 -6 -14 -16 q4 14 12 22 q-6 0 -14 -4 q6 8 14 10 q-6 4 -12 4 q8 2 14 0 z"/>
-      </g>
-      <!-- mid-left fern -->
-      <g transform="translate(75 410)">
-        <path d="M0 0 q-6 -34 -2 -64 q2 14 6 28 q-10 -8 -16 -18 q4 14 14 22 q-8 0 -16 -2 q8 6 16 6 q-6 4 -12 4 q10 2 14 0 q-4 6 -10 8 q12 0 16 -4 z"/>
-      </g>
-      <!-- right fern -->
-      <g transform="translate(380 380)">
-        <path d="M0 0 q4 -28 2 -52 q-2 12 -4 24 q8 -6 14 -16 q-4 14 -12 22 q6 0 14 -4 q-6 8 -14 10 q6 4 12 4 q-8 2 -14 0 z"/>
-      </g>
-      <!-- behind right -->
-      <g transform="translate(320 440)">
-        <path d="M0 0 q-6 -40 0 -72 q4 16 4 30 q10 -10 16 -22 q-6 18 -16 26 q10 0 18 -4 q-10 10 -20 10 q8 6 14 8 q-12 0 -18 -6 z"/>
-      </g>
-    </g>
-
-    <!-- Small grass tufts in the foreground -->
-    <g stroke="#1f3a0c" stroke-width="1.4" opacity="0.6" fill="none">
+    <!-- Small grass tufts scattered across foreground -->
+    <g stroke="#1f3a0c" stroke-width="1.4" opacity="0.55" fill="none">
       <path d="M30 440 q2 -10 0 -16 M34 440 q4 -8 2 -16 M38 440 q-1 -10 -3 -16"/>
-      <path d="M140 450 q2 -10 0 -16 M144 450 q4 -8 2 -16 M148 450 q-1 -10 -3 -16"/>
-      <path d="M210 445 q2 -10 0 -16 M214 445 q4 -8 2 -16 M218 445 q-1 -10 -3 -16"/>
-      <path d="M280 450 q2 -10 0 -16 M284 450 q4 -8 2 -16 M288 450 q-1 -10 -3 -16"/>
+      <path d="M120 450 q2 -10 0 -16 M124 450 q4 -8 2 -16 M128 450 q-1 -10 -3 -16"/>
+      <path d="M200 445 q2 -10 0 -16 M204 445 q4 -8 2 -16 M208 445 q-1 -10 -3 -16"/>
+      <path d="M270 452 q2 -10 0 -16 M274 452 q4 -8 2 -16 M278 452 q-1 -10 -3 -16"/>
+      <path d="M340 440 q2 -10 0 -16 M344 440 q4 -8 2 -16 M348 440 q-1 -10 -3 -16"/>
     </g>
 
     <!-- Pterosaur silhouette flying high (single decorative path) -->
