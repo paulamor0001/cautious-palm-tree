@@ -33,21 +33,80 @@ html, body {
   bottom: 0; left: 0; right: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  background: #fff;
-  border-top: 1px solid #ddd;
-  padding-bottom: env(safe-area-inset-bottom);
+  background: #fffaf3;
+  border-top: 1px solid #ecdfca;
+  box-shadow: 0 -4px 14px rgba(60, 40, 20, 0.06);
+  padding: 6px 4px;
+  padding-bottom: calc(6px + env(safe-area-inset-bottom));
 }
 
 #tabbar button {
   border: 0;
   background: transparent;
   min-height: var(--tap);
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 600;
   color: var(--muted);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 4px 2px;
+  transition: color 160ms ease, transform 120ms ease;
 }
 
-#tabbar button[aria-current="page"] { color: var(--ink); font-weight: 600; }
+#tabbar .tab-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 28px;
+  border-radius: 14px;
+  background: transparent;
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+#tabbar .tab-icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+#tabbar .tab-label {
+  display: block;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+#tabbar button:active { transform: scale(0.94); }
+#tabbar button:active .tab-icon-wrap { transform: scale(0.92); }
+
+#tabbar button[aria-current="page"] { color: var(--ink); }
+#tabbar button[aria-current="page"] .tab-icon-wrap {
+  background: rgba(247, 181, 0, 0.18);
+}
+
+#tabbar button[data-tab="home"][aria-current="page"] { color: #b8780b; }
+#tabbar button[data-tab="home"][aria-current="page"] .tab-icon-wrap {
+  background: rgba(247, 181, 0, 0.22);
+}
+
+#tabbar button[data-tab="dig"][aria-current="page"] { color: var(--dig); }
+#tabbar button[data-tab="dig"][aria-current="page"] .tab-icon-wrap {
+  background: rgba(107, 68, 35, 0.16);
+}
+
+#tabbar button[data-tab="museum"][aria-current="page"] { color: var(--museum); }
+#tabbar button[data-tab="museum"][aria-current="page"] .tab-icon-wrap {
+  background: rgba(45, 62, 80, 0.16);
+}
+
+#tabbar button[data-tab="sanctuary"][aria-current="page"] { color: var(--sanctuary); }
+#tabbar button[data-tab="sanctuary"][aria-current="page"] .tab-icon-wrap {
+  background: rgba(45, 90, 31, 0.16);
+}
 
 .loading { text-align: center; color: var(--muted); margin-top: 40vh; }
 
