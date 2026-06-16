@@ -58,7 +58,7 @@ const SCENE_SVG = `
 
     <!-- Mid ginkgo tree (left) -->
     <g transform="translate(20 225)" fill="#2f5018">
-      <rect x="-2" y="-4" width="4" height="-46" fill="#3a2a1a" transform="scale(1 -1)"/>
+      <rect x="-2" y="-50" width="4" height="46" fill="#3a2a1a"/>
       <path d="M0 -50 q-22 -4 -28 -18 q14 4 22 14 q-10 -16 -4 -30 q10 14 10 28 q4 -14 16 -22 q-2 16 -10 28 q14 -10 28 -8 q-12 12 -34 8 z"/>
     </g>
 
